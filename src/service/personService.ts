@@ -16,13 +16,21 @@ const createPerson = async(personCreateDto : PersonCreateDto, userId : number)=>
 
         }
     });
-    
+
 
 
     return data;
 }
 
-const getPersonById = async()=>{
+const getPersonById = async(personId : number)=>{
+    const data = prisma.person.findUnique({
+        where : {
+            id : personId
+
+        }
+    });
+
+    return data;
     
 }
 
