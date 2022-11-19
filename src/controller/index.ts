@@ -1,1 +1,1 @@
-export {};
+export { default as personController } from "./personController";
