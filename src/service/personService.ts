@@ -1,5 +1,6 @@
 import { PersonCreateDto } from './../interface/PersonCreateDto';
 import { PrismaClient } from '@prisma/client'
+import { PersonUpdateDto } from '../interface/PersonUpdateDto';
 const prisma = new PrismaClient()
 
 
@@ -34,11 +35,27 @@ const getPersonById = async(personId : number)=>{
     
 }
 
+const updatePerson = async( personId : number, isActive : boolean)=>{
 
+
+    const data = await prisma.person.update({
+        where : {
+            id : personId
+        },
+        data : {
+            is_active : isActive,
+        }
+
+    });
+
+    return data;
+
+}
 
 const personService={
     createPerson,
-    getPersonById
+    getPersonById,
+    updatePerson
 }
 
 export default personService;
