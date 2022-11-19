@@ -7,6 +7,8 @@ export default {
   //인물생성성공
   CREATE_PERSON_SUCCESS : '인물생성 성공',
 
+  //유저생성성공
+  CREATE_USER_SUCCESS : '유저생성 성공',
 
   // 서버 내 오류
   INTERNAL_SERVER_ERROR: '서버 내 오류',
