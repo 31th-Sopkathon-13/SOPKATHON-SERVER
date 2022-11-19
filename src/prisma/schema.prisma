@@ -8,14 +8,15 @@ datasource db {
 }
 
 model person {
-  id      Int     @id @unique @default(autoincrement())
-  user_id Int
-  name    String  @db.VarChar(100)
-  birth   String? @db.VarChar(100)
-  mbti    String? @db.VarChar(10)
-  memo    String?
-  value   Int
-  user    user    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "person_user_id_fk")
+  id        Int     @id @unique @default(autoincrement())
+  user_id   Int
+  name      String  @db.VarChar(100)
+  birth     String? @db.VarChar(100)
+  mbti      String? @db.VarChar(10)
+  memo      String?
+  value     Int
+  is_active Boolean @default(true)
+  user      user    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "person_user_id_fk")
 }
 
 model user {

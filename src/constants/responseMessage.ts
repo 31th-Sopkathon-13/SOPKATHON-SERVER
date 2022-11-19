@@ -11,9 +11,6 @@ export default {
   //유저생성성공
   CREATE_USER_SUCCESS : '유저생성 성공',
 
-  //조회성공
-  
-
   // 서버 내 오류
   INTERNAL_SERVER_ERROR: '서버 내 오류',
 };
