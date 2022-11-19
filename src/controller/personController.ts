@@ -26,6 +26,29 @@ const createPerson = async(req : Request, res : Response)=>{
 
 
 const getPersonById = async(req : Request, res : Response)=>{
+    const {personId } = req.params;
+    
+
+    if(!personId){
+        return res.status(statusCode.BAD_REQUEST).send(fail(statusCode.BAD_REQUEST,message.BAD_REQUEST));
+    }
+
+    try{
+        const data = await personService.getPersonById(+personId);
+
+        if(!data){
+            return res.status(statusCode.NO_CONTENT).send(success(statusCode.NO_CONTENT,message.NO_CONTENT));
+        }
+
+        return res.status(statusCode.OK).send(success(statusCode.OK,"인물 조회 성공", data));
+    }
+    catch(error){
+        console.log(error);
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(fail(statusCode.INTERNAL_SERVER_ERROR,message.INTERNAL_SERVER_ERROR));
+
+    }
+
+
     
 }
 
