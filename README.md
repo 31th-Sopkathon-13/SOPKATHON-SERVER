@@ -37,11 +37,11 @@
 
 | func |     detail      | developer | done |
 | :--: | :-------------: | :-------: | :--: |
-| user |  유저 생성 API   |  수화     |     |
-|person|   인물 생성 API  |   수화    |    |
-|      |  인물 상세 조회 API|   수화  |    |
-|      |  인물 리스트 조회 API|   민재 |   |
-|      | 인물 정보 변경 API|   민재    |    |
+| user |  유저 생성 API   |  수화     |   ✅  |
+|person|   인물 생성 API  |   수화    |  ✅  |
+|      |  인물 상세 조회 API|   수화  |  ✅  |
+|      |  인물 리스트 조회 API|   민재 |  ✅ |
+|      | 인물 정보 변경 API|   민재    |  ✅  |
 
 <br>
 
@@ -60,6 +60,84 @@
 ```
 
 <br>
+
+## 😊 Our Dependencies
+
+```json
+{
+  "name": "seminar4",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc && node dist"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "eslint": "8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.6.1",
+    "@types/lodash": "^4.14.189",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "prisma": "^4.6.1"
+  }
+}
+
+```
+
+<br>
+
+## 😊 Our Architecture
+<img src="https://user-images.githubusercontent.com/82744423/202871525-96bf7b96-d041-4bea-8bc8-2a3783b7c7ac.png">
+
+<br>
+    
+## 😊 Our model
+   
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model person {
+  id        Int     @id @unique @default(autoincrement())
+  user_id   Int
+  name      String  @db.VarChar(100)
+  birth     String? @db.VarChar(100)
+  mbti      String? @db.VarChar(10)
+  memo      String?
+  value     Int
+  is_active Boolean @default(true)
+  user      user    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "person_user_id_fk")
+}
+
+model user {
+  id     Int      @id @default(autoincrement())
+  name   String   @db.VarChar(100)
+  person person[]
+}
+
+
+```
+<br>
+    
+## 😊 ERD
+   
+<img width="400" alt="Untitled" src="https://user-images.githubusercontent.com/82744423/202870634-124a1af4-c1cb-4b3e-a61b-b9fecdeb9880.png">
 
 
     
