@@ -3,7 +3,7 @@ import  personRouter  from "./personRouter";
 
 const router: Router = Router();
 
-router.use("/user",personRouter);
+router.use("/person",personRouter);
 
 
 

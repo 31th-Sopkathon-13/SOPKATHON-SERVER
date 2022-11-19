@@ -4,9 +4,10 @@ import { personController } from '../controller';
 
 const personRouter : Router = Router();
 
-personRouter.post("/",);
-
-personRouter.get("/:personId",);
+//인물 생성
+personRouter.post("/:userId",personController.createPerson);
+//인물 상세조회
+personRouter.get("/:personId", personController.getPersonById);
 
 personRouter.get("/main", );
 
