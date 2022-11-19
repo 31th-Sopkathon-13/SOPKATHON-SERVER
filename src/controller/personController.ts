@@ -1,3 +1,4 @@
+import { PersonUpdateDto } from './../interface/PersonUpdateDto';
 import { fail, success } from './../constants/response';
 import { PersonCreateDto } from './../interface/PersonCreateDto';
 import { Response, Request } from "express";
@@ -49,9 +50,54 @@ const getPersonById = async(req : Request, res : Response)=>{
     }    
 }
 
+const updatePerson = async(req : Request, res : Response)=>{
+    const { personId } = req.params;
+    const { isActive } = req.body;
+    
+    if (isActive===undefined){
+        return res.status(statusCode.BAD_REQUEST).send(fail(statusCode.BAD_REQUEST,message.INTERNAL_SERVER_ERROR));
+
+    }
+
+
+    try{
+        let updatedPerson
+
+        if (isActive.toLowerCase()==='true'){
+            updatedPerson = await personService.updatePerson(+personId, true);
+
+
+        }else if(isActive.toLowerCase()==='false'){
+            updatedPerson = await personService.updatePerson(+personId, false);
+
+        }
+        else{
+            return res.status(statusCode.BAD_REQUEST).send(fail(statusCode.BAD_REQUEST,message.INTERNAL_SERVER_ERROR));
+
+        }
+
+        if(!updatedPerson){
+            return res.status(statusCode.NO_CONTENT).send(success(statusCode.NO_CONTENT,message.NO_CONTENT));
+
+        }
+        else{
+            return res.status(statusCode.OK).send(success(statusCode.OK,"성공",updatedPerson));
+        }
+
+
+    }
+    catch(error){
+        console.log(error);
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(fail(statusCode.INTERNAL_SERVER_ERROR,message.INTERNAL_SERVER_ERROR));
+        
+    }
+
+}
+
 const personController={
     createPerson,
-    getPersonById
+    getPersonById,
+    updatePerson
 }
 
 export default personController;

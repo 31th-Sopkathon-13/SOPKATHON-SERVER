@@ -11,7 +11,7 @@ personRouter.get("/:personId", personController.getPersonById);
 
 personRouter.get("/main", );
 
-personRouter.patch("/:personId",);
+personRouter.patch("/:personId",personController.updatePerson);
 
 
 export default personRouter;
