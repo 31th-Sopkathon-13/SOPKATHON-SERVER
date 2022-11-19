@@ -1,13 +1,14 @@
 <!-- @format -->
 
-## SOPKATHON-SERVER
+## Re:cord-SERVER
+쉽게 지나치고 사라지는 나의 인간관계를 의미 있게 바꿔주는 인간 관계 아카이빙 서비스
 
 > 31th SOPT Sopkathon    <br>
 > 2022.11.19 ~
 
 <br>
 
-## Server
+## Server 
 
 | [강민재](https://github.com/m1njae) | [유수화](https://github.com/YuSuhwa-ve) |
 | :----------------------------------------: | :---------------------------------: |
@@ -36,6 +37,7 @@
 
 | func |     detail      | developer | done |
 | :--: | :-------------: | :-------: | :--: |
+| user |  유저 생성 API   |  수화     |     |
 |person|   인물 생성 API  |   수화    |    |
 |      |  인물 상세 조회 API|   수화  |    |
 |      |  인물 리스트 조회 API|   민재 |   |
