@@ -41,24 +41,7 @@ const getPersonByValue = async (userId: number) => {
       value: 'asc',
     },
   });
-  let arr1 = [];
-  let arr2 = [];
-  let arr3 = [];
-  let arrayData = [];
-  for (let i = 0; i < 3; i++) {
-    const { name, value } = data[i];
-    arr1.push({ name, value });
-  }
-  for (let i = 3; i < 6; i++) {
-    const { name, value } = data[i];
-    arr2.push({ name, value });
-  }
-  for (let i = 6; i < 8; i++) {
-    const { name, value } = data[i];
-    arr3.push({ name, value });
-  }
-  arrayData.push(arr1, arr2, arr3);
-  return arrayData;
+  return data;
 };
 
 const updatePerson = async (
